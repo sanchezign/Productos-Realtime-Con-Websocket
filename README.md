@@ -22,7 +22,7 @@
 
 ```bash
 # 1. Clonar o descargar el repositorio
-git clone https://github.com/tu-usuario/Productos-Realtime-Con-Websocket.git
+git clone https://github.com/sanchezign/Productos-Realtime-Con-Websocket.git
 cd Productos-Realtime-Con-Websocket
 
 # 2. Instalar dependencias
@@ -31,4 +31,5 @@ npm install
 # 3. Iniciar el servidor
 
 npm start
+
 
