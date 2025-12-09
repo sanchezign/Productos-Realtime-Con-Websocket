@@ -7,7 +7,7 @@
 ![Socket.IO](https://img.shields.io/badge/Socket.IO-4.7-red)
 ![Handlebars](https://img.shields.io/badge/Handlebars-7.1-orange)
 
-## Objetivos cumplidos ✓
+## Objetivos cumplidos:
 - Motor de plantillas **Handlebars**.
 - Dos vistas: `home.handlebars` y `realTimeProducts.handlebars`.
 - WebSockets totalmente funcionales con **Socket.IO**.
@@ -31,3 +31,4 @@ npm install
 # 3. Iniciar el servidor
 
 npm start
+
