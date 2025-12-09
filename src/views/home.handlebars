@@ -1,0 +1,10 @@
+<h2>Lista de productos:</h2>
+<ul>
+    {{#each productos}}
+        <li><strong>{{this.title}}</strong> - ${{this.price}} ({{this.stock}} und)</li>
+    {{else}}
+        <p>No hay productos todavía.</p>
+    {{/each}}
+</ul>
+<br>
+<a href="/realtimeproducts">Click para ver WebSockets en tiempo real.</a>

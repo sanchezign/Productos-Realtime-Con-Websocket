@@ -1,0 +1,62 @@
+<h2>Agregar Productos:</h2>
+
+<form id="form">
+    <input type="text" placeholder="Título" id="title" required>
+    <input type="text" placeholder="Descripción" id="description" required>
+    <input type="text" placeholder="Código" id="code" required>
+    <input type="number" placeholder="Precio" id="price" required>
+    <input type="number" placeholder="Stock" id="stock" required>
+    <input type="text" placeholder="Categoría" id="category" required>
+    <button type="submit">Agregar</button>
+</form>
+
+<div id="errores" style="color:red; margin-top:10px;"></div>
+
+<h3>Lista Actualizada:</h3>
+<ul id="lista"></ul>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+    const form = document.getElementById('form');
+    const lista = document.getElementById('lista');
+    errores = document.getElementById('errores');
+
+    const render = p => {
+        const li = document.createElement('li');
+        li.dataset.id = p.id;
+        li.innerHTML = `<strong>${p.title}</strong> — $${p.price} — Stock: ${p.stock}
+                        <button style="float:right;color:red">✖</button>`;
+        li.querySelector('button').onclick = () => socket.emit('eliminarProducto', p.id);
+        lista.appendChild(li);
+    };
+
+    socket.on('actualizarProductos', prods => {
+        lista.innerHTML = '';
+        prods.forEach(render);
+    });
+
+    socket.on('productoCreado', render);
+
+    socket.on('productoEliminado', id => {
+        document.querySelector(`li[data-id="${id}"]`)?.remove();
+    });
+
+    socket.on('errorCrear', msg => errores.textContent = 'Error: ' + msg);
+    socket.on('errorEliminar', msg => errores.textContent = 'Error: ' + msg);
+
+    form.onsubmit = e => {
+        e.preventDefault();
+        errores.textContent = '';
+        const datos = {
+            title:       document.getElementById('title').value,
+            description: document.getElementById('description').value,
+            code:        document.getElementById('code').value,
+            price:       document.getElementById('price').value,
+            stock:       document.getElementById('stock').value,
+            category:    document.getElementById('category').value
+        };
+        socket.emit('crearProducto', datos);
+        form.reset();
+    };
+</script>
