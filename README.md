@@ -1,5 +1,5 @@
 # Programación Backend I: Desarrollo Avanzado
-**Handlebars + WebSockets en tiempo real**  
+**Handlebars + WebSockets en tiempo real.**  
  
  ## Tecnologías utilizadas
 ![Node.js](https://img.shields.io/badge/Node.js-20.x-green)
@@ -29,4 +29,5 @@ cd Productos-Realtime-Con-Websocket
 npm install
 
 # 3. Iniciar el servidor
+
 npm start
